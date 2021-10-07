@@ -89,29 +89,28 @@ resource "aws_security_group" "allow_all" {
     }
 }
 
-#data "aws_ami" "my_ami" {
-      #most_recent      = true
+data "aws_ami" "my_ami" {
+      most_recent      = true
       #name_regex       = "^chandra"
-      #owners           = ["960723776111"]
-#}
+      owners           = ["960723776111"]
+}
 
 
 resource "aws_instance" "web1" {
-  for_each = toset(["one", "two", "three"])
-  ami                    = "ami-087c17d1fe0178315"
+  ami = "${data.aws_ami.my_ami.id}"
   instance_type          = "t2.micro"
   key_name               = "my-kp-nv-01"
   monitoring             = true
   subnet_id = "${aws_subnet.subnet1-public.id}"
   vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
   tags = {
-    Name = "instance-${each.key}"
+    Name = "Server-1"
     Terraform   = "true"
     Environment = "dev"
   }
 }
 
 
-#output "ami_id" {  value = "${data.aws_ami.my_ami.id}"   }
+output "ami_id" {  value = "${data.aws_ami.my_ami.id}"   }
 
 
