@@ -101,6 +101,7 @@ resource "aws_instance" "web1" {
 	
   ami = "${data.aws_ami.my_ami.id}"
   instance_type          = "t2.micro"
+  associate_public_ip_address = true
   key_name               = "my-kp-nv-01"
   monitoring             = true
   subnet_id = "${aws_subnet.subnet1-public.id}"
@@ -110,7 +111,7 @@ resource "aws_instance" "web1" {
     Terraform   = "true"
     Environment = "dev"
   }
-	associate_public_ip_address = true
+	
 }
 
 
