@@ -98,6 +98,7 @@ data "aws_ami" "my_ami" {
 
 
 resource "aws_instance" "web1" {
+	
   ami = "${data.aws_ami.my_ami.id}"
   instance_type          = "t2.micro"
   key_name               = "my-kp-nv-01"
@@ -109,6 +110,7 @@ resource "aws_instance" "web1" {
     Terraform   = "true"
     Environment = "dev"
   }
+	associate_public_ip_address = true
 }
 
 
