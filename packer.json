@@ -20,8 +20,14 @@
     "type": "shell",
     "inline": [
       "sleep 60",
-     "sudo aws s3 cp https://clouddbs.s3.amazonaws.com/docker-ubuntu.sh .",
-     "sudo ./docker-ubuntu.sh"
-       ]
+      "sudo snap install aws-cli --classic",
+      "sudo pwd",
+      "sudo ls -ltr",
+      "sudo wget https://raw.githubusercontent.com/narlacloud/docker-ubuntu-server/main/docker-ubuntu.sh",
+      "sudo chmod 777 *.sh",
+      "sudo sed -i -e 's/\r$//' docker-ubuntu.sh",
+      "sudo ./docker-ubuntu.sh",
+      "sudo docker --version"
+    ]
   }]
 }
