@@ -20,15 +20,8 @@
     "type": "shell",
     "inline": [
       "sleep 60",
-      "sudo apt-get update",
-      "sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release",
-      "sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg",
-      "sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null",
-      "sudo apt-get update",
-      "sudo apt-get install docker-ce docker-ce-cli containerd.io",
-      "sudo apt-cache madison docker-ce",
-      "sudo docker version",
-      "sudo docker run hello-world"
+     "sudo aws s3 cp https://clouddbs.s3.amazonaws.com/docker-ubuntu.sh .",
+     "sudo ./docker-ubuntu.sh"
        ]
   }]
 }
