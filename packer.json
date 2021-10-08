@@ -9,10 +9,10 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "us-east-1",
-    "source_ami": "ami-02e136e904f3da870",
+    "source_ami": "ami-09e67e426f25ce0d7",
     "instance_type": "t2.micro",
-    "ssh_username": "ec2-user",
-    "ami_name": "DevOpsClass-Build-{{timestamp}}",
+    "ssh_username": "ubuntu",
+    "ami_name": "Docker-Build-{{timestamp}}",
     "vpc_id": "vpc-0b1a06fa87fe19a84",
     "subnet_id": "subnet-011a27d4c30c6b0a9"
   }],
@@ -20,16 +20,15 @@
     "type": "shell",
     "inline": [
       "sleep 60",
-      "sudo yum update -y",
-      "sudo amazon-linux-extras install nginx1 -y",
-      "sudo yum install git -y",
-      "sudo git clone https://github.com/mavrick202/webhooktesting.git",
-      "sudo rm -rf /usr/share/nginx/html/index.html",
-      "sudo cp webhooktesting/index.html /usr/share/nginx/html/index.html",
-      "sudo cp webhooktesting/style.css /usr/share/nginx/html/style.css",
-      "sudo cp webhooktesting/scorekeeper.js /usr/share/nginx/html/scorekeeper.js",
-      "sudo service nginx start",
-      "sudo chkconfig nginx on"
-      ]
+      "sudo apt-get update"
+      "sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release"
+      "sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg"
+      "sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
+      "sudo apt-get update"
+      "sudo apt-get install docker-ce docker-ce-cli containerd.io"
+      "sudo apt-cache madison docker-ce"
+      "sudo docker version"
+      "sudo docker run hello-world"
+       ]
   }]
 }
