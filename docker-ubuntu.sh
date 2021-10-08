@@ -5,7 +5,4 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docke
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 sudo apt-cache madison docker-ce
-sudo docker version
-sudo docker images
-sudo docker run hello-world
-sudo docker images
+sudo docker --version
